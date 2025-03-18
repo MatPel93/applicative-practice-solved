@@ -23,10 +23,10 @@ export function minBy(array, cb) {
 
 export function maxBy(array, cb) {
   // Your code goes here...
-  let highest = -Infinity;
+  let highest = null;
   let result;
   for (let i = 0; i < array.length; i++) {
-    if (cb(array[i]) > highest) {
+    if (cb(array[i]) > highest || highest === null) {
       highest = cb(array[i]);
       result = array[i];
     }

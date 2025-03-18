@@ -6,16 +6,12 @@ import { data } from "../data/data";
 
 export function getPlanetsWithNoMoons(data) {
   // Your code goes here...
-  var noMoons = data.planets
-    .filter(function (planet) {
-      if (!planet.hasOwnProperty("moons")) {
-        return planet.name;
-      }
-    })
-    .map(function (planet) {
-      return planet.name;
-    });
-  return noMoons;
+  return data.planets.reduce((acc, planet) => {
+    if (!planet.hasOwnProperty("moons")) {
+      acc.push(planet.name);
+    }
+    return acc;
+  }, []);
 }
 
 // === TEST YOURSELF ===

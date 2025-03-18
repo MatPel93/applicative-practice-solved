@@ -7,21 +7,35 @@ import { data } from "../data/data";
 
 export function lowMoonsPlanets(data) {
   // Your code goes here...
-  var lowMoonCount = data.planets
-    .filter(function (planet) {
-      if (Array.isArray(planet.moons) && planet.moons.length < 10) {
-        return planet.name;
-      } else if (!planet.hasOwnProperty("moons")) {
-        return planet.name;
-      }
-    })
-    .map(function (planet) {
-      return planet.name;
-    });
-  return lowMoonCount;
+  return data.planets.reduce((acc, planet) => {
+    if (Array.isArray(planet.moons) && planet.moons.length < 10) {
+      acc.push(planet.name);
+    } else if (!planet.hasOwnProperty("moons")) {
+      acc.push(planet.name);
+    }
+    return acc;
+  }, []);
 }
 
 // === TEST YOURSELF ===
 // Once you're finished run the test with "npm run test-11"
 // If the test has all tests passed, switch to the next exercise file
 // If any of the tests fails, refactor the code and run the test command after you've fixed the function
+
+/*.reduce((acc, planet) => {
+  if(Array.isArray(planet.moons) && planet.moons.length < 10) {
+    acc.push(planet.name);
+  }
+  return acc;
+})
+.filter(function (planet) {
+  if (Array.isArray(planet.moons) && planet.moons.length < 10) {
+    return planet.name;
+  } else if (!planet.hasOwnProperty("moons")) {
+    return planet.name;
+  }
+})
+.map(function (planet) {
+  return planet.name;
+});
+return lowMoonCount;*/
